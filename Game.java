@@ -1,8 +1,8 @@
 public class Game {
 
-    private Level levelOne;
-    private Level levelTwo;
-    private Level levelThree;
+    private final Level levelOne;
+    private final Level levelTwo;
+    private final Level levelThree;
     private int score;
     private boolean bonus;
 
@@ -25,7 +25,7 @@ public class Game {
 
     public void play(int lev, boolean gol, int poin) {
         getLevel(lev).setGoal(poin);
-        if(gol == true) {
+        if(gol) {
             getLevel(lev).reachGoal();
             System.out.println("Goal Reached");
             System.out.println("Points: " + poin);
@@ -34,16 +34,19 @@ public class Game {
         }
 
         System.out.println("Level: " + lev);
+        System.out.println();
     }
 
     public int getScore() {
         //System.out.println(levelOne.getPoints());
-        if(levelOne.goalReached() == true) score += levelOne.getPoints();
-        if(levelOne.goalReached() == true && levelTwo.goalReached() == true) score += levelTwo.getPoints();
-        if(levelTwo.goalReached() == true && levelThree.goalReached() == true) score += levelThree.getPoints();
-        if(bonus == true) score *= 3;
+        if(levelOne.goalReached()) score += levelOne.getPoints();
+        if(levelOne.goalReached() && levelTwo.goalReached()) score += levelTwo.getPoints();
+        if(levelTwo.goalReached() && levelThree.goalReached()) score += levelThree.getPoints();
+        if(bonus) score *= 3;
         return score;
     }
 
-    //public int playMany() {}
+    public int playMany(int a) {
+        // I have no idea
+    }
 }
